@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* Palette: stone-white paper + ink, one blue family. --blue is the brand; the process cards use
+   darker/lighter steps of the same hue. --blue-text is tuned for small-text contrast per theme. */
+:root {
+  --bg: #f2f1ee;
+  --surface: #fafaf9;
+  --fg: #16181d;
+  --muted: #55585f;
+  --line: rgb(22 24 29 / 0.12);
+  --blue: #1d4eff;
+  --blue-text: #1d4eff;
+  --blue-deep: #0a1a5c;
+  --ink: #16181d; /* dark blocks: quote, dock, footer */
+  --on-dark: #eef0f4;
+  --on-dark-muted: #a4a9b6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a22;
+    --fg: #eceef2;
+    --muted: #9a9fab;
+    --line: rgb(236 238 242 / 0.1);
+    --blue-text: #7d9bff;
+    --ink: #1b202b;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-blue: var(--blue);
+  --color-blue-text: var(--blue-text);
+  --color-blue-deep: var(--blue-deep);
+  --color-ink: var(--ink);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-muted: var(--on-dark-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-schibsted);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+@layer components {
+  /* Marker highlight (Indisea-style): blue box behind words, survives line wraps. */
+  .mark {
+    background: var(--blue);
+    color: #fff;
+    padding: 0 0.12em;
+    border-radius: 0.12em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Blue duotone for photography. Inside a .group, hover reveals the original colors. */
+  .duo {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--blue-deep);
+  }
+  .duo img {
+    filter: grayscale(1) contrast(1.1);
+    transition:
+      filter 0.9s var(--ease-out-soft),
+      transform 1.2s var(--ease-out-soft);
+  }
+  .duo::before,
+  .duo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.9s var(--ease-out-soft);
+  }
+  .duo::before {
+    background: var(--blue);
+    mix-blend-mode: color;
+  }
+  .duo::after {
+    background: var(--blue-deep);
+    mix-blend-mode: lighten;
+  }
+  .group:hover .duo img {
+    filter: none;
+    transform: scale(1.04);
+  }
+  .group:hover .duo::before,
+  .group:hover .duo::after {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll reveal: .reveal gets [data-shown] from <Reveal>. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+    filter: blur(6px);
+    transition:
+      opacity 0.9s var(--ease-out-soft),
+      transform 0.9s var(--ease-out-soft),
+      filter 0.9s var(--ease-out-soft);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .reveal[data-shown] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* Hero load-in */
+  .rise {
+    animation: rise 1s var(--ease-out-soft) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+
+  /* Sunrise: the disc rises behind the horizon, then the bars draw in. */
+  .sun-disc {
+    animation: sunrise 1.6s var(--ease-out-soft) 0.2s both;
+  }
+  @keyframes sunrise {
+    from {
+      transform: translateY(70%);
+    }
+  }
+  .sun-bar {
+    transform-origin: left;
+    animation: bar 1s var(--ease-out-soft) both;
+    animation-delay: calc(0.7s + var(--i, 0) * 110ms);
+  }
+  @keyframes bar {
+    from {
+      transform: scaleX(0);
+    }
+  }
+}
+
+/* FAQ: rotate the plus into an x when open */
+details[open] .faq-icon {
+  transform: rotate(45deg);
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
