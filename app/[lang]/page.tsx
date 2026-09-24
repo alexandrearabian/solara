@@ -59,7 +59,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       <main>
         {/* Hero: poster type + sunrise mark */}
-        <section className="mx-auto grid min-h-[calc(100dvh-4.5rem)] max-w-[1400px] items-center gap-12 px-4 pt-10 pb-28 md:px-8 lg:grid-cols-12 lg:pt-0">
+        <section className="mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-[1400px] items-center gap-12 px-4 pt-10 pb-28 md:px-8 lg:grid-cols-12 lg:pt-0">
           <div className="lg:col-span-8">
             <h1 className={`rise text-[clamp(3rem,7.2vw,7rem)] leading-[1] ${display}`}>
               {t.hero.title} <span className="mark">{t.hero.highlight}</span>
@@ -86,7 +86,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           <ScrollLine />
 
           {/* Statement */}
-          <section data-line="0.2" className="mx-auto grid max-w-[1400px] gap-8 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-12">
+          <section data-line="0.21" className="mx-auto grid max-w-[1400px] gap-8 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-12">
             <Reveal className="lg:col-span-3">
               <p className="text-xs font-semibold tracking-[0.18em] text-muted uppercase">{t.about.label}</p>
               <p lang="hy" aria-hidden className="mt-6 text-7xl font-bold tracking-[-0.04em] text-blue-text md:text-8xl">
@@ -213,11 +213,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
           </section>
 
           {/* FAQ */}
-          <section id="faq" data-line="0.36" className="mx-auto grid max-w-[1400px] gap-12 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-12">
+          <section id="faq" data-line="0.46" className="mx-auto grid max-w-[1400px] gap-12 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <h2 className={`text-5xl leading-[0.98] md:text-6xl ${display}`}>{t.faq.title}</h2>
             </Reveal>
-            <div className="lg:col-span-7">
+            {/* Column 6 stays empty for the scroll line */}
+            <div className="lg:col-span-6 lg:col-start-7">
               {t.faq.items.map((f, i) => (
                 <Reveal key={f.q} i={i}>
                   <details className="group border-b border-line">

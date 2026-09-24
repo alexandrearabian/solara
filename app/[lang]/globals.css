@@ -173,15 +173,15 @@ h3 {
   stroke: #7c9bff;
   transition: stroke 0.8s var(--ease-out-soft);
 }
-.scroll-line circle {
-  fill: #7c9bff;
-  transition: fill 0.8s var(--ease-out-soft);
+.scroll-line span {
+  background: #7c9bff;
+  transition: background 0.8s var(--ease-out-soft);
 }
 .scroll-line[data-done] path {
   stroke: var(--blue);
 }
-.scroll-line[data-done] circle {
-  fill: var(--blue);
+.scroll-line[data-done] span {
+  background: var(--blue);
 }
 
 /* Scroll-driven touches. Browsers without view timelines simply show the final state. */
