@@ -36,7 +36,12 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
   return (
-    <html lang={lang} className={`${geist.variable} ${schibsted.variable} antialiased`}>
+    // suppressHydrationWarning: extensions (Dark Reader) stamp attributes on <html> before React hydrates.
+    <html lang={lang} className={`${geist.variable} ${schibsted.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        {/* The site ships its own dark theme; tells Dark Reader not to repaint it. */}
+        <meta name="darkreader-lock" />
+      </head>
       <body className="font-sans">{children}</body>
     </html>
   );

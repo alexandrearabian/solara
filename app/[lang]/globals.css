@@ -168,6 +168,70 @@ h3 {
   }
 }
 
+/* Scroll line (<ScrollLine>): light blue while travelling, brand blue once it reaches the skyline. */
+.scroll-line path {
+  stroke: #7c9bff;
+  transition: stroke 0.8s var(--ease-out-soft);
+}
+.scroll-line circle {
+  fill: #7c9bff;
+  transition: fill 0.8s var(--ease-out-soft);
+}
+.scroll-line[data-done] path {
+  stroke: var(--blue);
+}
+.scroll-line[data-done] circle {
+  fill: var(--blue);
+}
+
+/* Scroll-driven touches. Browsers without view timelines simply show the final state. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Skyline steps rise out of the band as it enters */
+    .step {
+      transform-origin: bottom;
+      animation: step-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    @keyframes step-rise {
+      from {
+        transform: scaleY(0.15);
+      }
+    }
+
+    /* Work photos drift slightly inside their frame */
+    .parallax img {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    @keyframes drift {
+      from {
+        translate: 0 -5%;
+        scale: 1.12;
+      }
+      to {
+        translate: 0 5%;
+        scale: 1.12;
+      }
+    }
+
+    /* Footer wordmark slides up into place */
+    .wordmark {
+      animation: wordmark linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    @keyframes wordmark {
+      from {
+        opacity: 0;
+        transform: translateY(35%);
+      }
+    }
+  }
+}
+
 /* FAQ: rotate the plus into an x when open */
 details[open] .faq-icon {
   transform: rotate(45deg);
