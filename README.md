@@ -13,8 +13,6 @@ All copy lives in `app/[lang]/content.ts`. Search for `PLACEHOLDER`:
 
 - `BOOKING_URL`: your Cal.com / Calendly link
 - `EMAIL`
-- Case studies, testimonial and FAQ timelines
-- Images: `IMAGES` in `app/[lang]/page.tsx` points at grayscale stock photos. Put real files in
-  `public/images/` and use `"/images/<name>.jpg"`, then remove `remotePatterns` from `next.config.ts`.
+- FAQ timelines
 
 Deploy: push to GitHub and import in Vercel (zero config).

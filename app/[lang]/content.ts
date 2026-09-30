@@ -7,72 +7,109 @@ export const EMAIL = "hola@solaranor.com"; // PLACEHOLDER
 const es = {
   meta: {
     title: "Solara Nor | Diseño e ingeniería de software a medida",
-    description:
-      "Estudio de diseño e ingeniería de software. Construimos plataformas SaaS, e-commerce, sistemas de reservas y webs de alto rendimiento.",
+    description: "Estudio de diseño e ingeniería. Construimos plataformas, tiendas, sistemas de reservas y webs.",
   },
   nav: { services: "Servicios", work: "Trabajo", process: "Proceso", faq: "Preguntas", cta: "Reservar llamada" },
   hero: {
     title: "Diseñamos y construimos software que",
     highlight: "dura.",
-    body: "Solara Nor es un estudio de diseño e ingeniería. Plataformas SaaS, e-commerce y sistemas de reservas, hechos por un mismo equipo senior de principio a fin.",
+    body: "Un estudio pequeño. El mismo equipo diseña y programa tu producto, de la primera llamada a producción.",
     secondary: "Ver trabajo",
   },
   about: {
     label: "El estudio",
-    lead: "Nor significa «nuevo» en armenio. Es lo que hacemos cada día: producto nuevo, construido con criterio de ingeniería.",
+    lead: "Nor significa «nuevo» en armenio. Cada encargo sale hecho a medida, con criterio de ingeniería.",
     // *word* renders as a blue marker highlight
-    body: "Diseño, desarrollo y producto en un solo equipo, para que cada decisión pese el *usuario*, el *código* y el *negocio*.",
+    body: "Diseño y código los lleva el mismo equipo. Una pantalla nueva tiene que servirle a quien la *usa* y a quien *paga*.",
   },
   services: {
     title: "Lo que construimos.",
     items: [
-      { name: "Plataformas SaaS", body: "Producto completo: cuentas, pagos, paneles y APIs. Del MVP a la versión que escala a miles de usuarios." },
-      { name: "E-commerce", body: "Tiendas en Shopify o a medida, rápidas, conectadas al inventario y listas para vender a escala." },
-      { name: "Sistemas de reservas", body: "Agenda, pagos y recordatorios para clínicas, hoteles y restaurantes, integrados con las herramientas que ya usan." },
-      { name: "Webs y landing pages", body: "Sitios de marca y páginas de campaña con carga instantánea, SEO técnico y un gestor de contenidos sencillo." },
-      { name: "Integraciones", body: "Conectamos CRM, ERP, pasarelas de pago y APIs de terceros para que los datos fluyan sin trabajo manual." },
+      {
+        name: "Plataformas SaaS",
+        body: "Cuentas, cobros, panel y API. Empezamos por el MVP y seguimos cuando entran usuarios.",
+      },
+      { name: "E-commerce", body: "Tiendas en Shopify o hechas a medida, conectadas a tu inventario." },
+      {
+        name: "Sistemas de reservas",
+        body: "Agenda, cobro y recordatorios para clínicas, hoteles y restaurantes, unidos a las herramientas que ya usan.",
+      },
+      {
+        name: "Webs y landing pages",
+        body: "Sitios de marca y páginas de campaña. Tu equipo los edita desde un gestor simple.",
+      },
+      {
+        name: "Integraciones",
+        body: "Conectamos CRM, ERP, pasarelas y APIs, para que nadie copie datos a mano.",
+      },
     ],
   },
   work: {
-    eyebrow: "Trabajo seleccionado",
     title: "Proyectos recientes",
-    // PLACEHOLDER projects: swap names, sectors, scope and images for real case studies.
+    external: "Se abre en otra pestaña",
     items: [
-      { name: "Casa Almendro", sector: "Hotel boutique", scope: "Web + motor de reservas directas", image: "almendro" },
-      { name: "Nordvik Atelier", sector: "Moda de autor", scope: "E-commerce en Shopify", image: "nordvik" },
-      { name: "Clínica Marès", sector: "Medicina estética", scope: "Plataforma de citas y pagos online", image: "mares" },
+      {
+        name: "Tadrón Teatro",
+        href: "https://www.tadronteatro.com.ar/",
+        body: "Una sala en Palermo, Buenos Aires. Cartelera de la semana, cursos e historia del teatro.",
+        image: "/work/tadron.jpg",
+      },
+      {
+        name: "Mar D Jabones",
+        href: "https://www.mardjabones.com.ar/",
+        body: "Catálogo de jabones y resinas hechos a mano. Los pedidos se cierran por Instagram.",
+        image: "/work/mard.jpg",
+      },
     ],
   },
   process: {
     title: "Cómo trabajamos",
-    body: "Un solo equipo senior de principio a fin. Alcance, plazos y precio cerrados antes de empezar, y una versión en vivo cada semana.",
+    body: "Un equipo senior, de la primera llamada al lanzamiento. Precio y plazos cerrados antes de programar. Cada semana hay una versión para revisar.",
     steps: [
-      { name: "Descubrimiento", body: "Entendemos el negocio, los usuarios y las restricciones técnicas. Salimos con alcance, plazos y precio cerrado." },
-      { name: "Diseño de producto", body: "Arquitectura, flujos y diseño visual en un prototipo navegable, validado antes de escribir una línea de código." },
-      { name: "Ingeniería", body: "Código tipado, probado y documentado. Revisiones semanales sobre una versión en vivo." },
-      { name: "Lanzamiento y evolución", body: "Desplegamos, monitorizamos y medimos. Después seguimos iterando junto a tu equipo." },
+      {
+        name: "Descubrimiento",
+        body: "Miramos el negocio, quién lo usa y qué no se puede romper. Sales con alcance, plazos y un precio cerrado.",
+      },
+      {
+        name: "Diseño de producto",
+        body: "Flujos y diseño en un prototipo que se puede clicar. Lo validamos antes de programar.",
+      },
+      { name: "Ingeniería", body: "Código en TypeScript, con tests. Cada semana revisamos la versión que está en vivo." },
+      {
+        name: "Lanzamiento y evolución",
+        body: "Publicamos, miramos errores y números. Si quieres, seguimos después del lanzamiento.",
+      },
     ],
-  },
-  quote: {
-    // PLACEHOLDER testimonial
-    body: "Por fin tenemos una web a la altura del hotel. Las reservas directas ya no dependen de las plataformas.",
-    name: "Lucía Ferrer",
-    role: "Directora, Casa Almendro",
   },
   faq: {
     title: "Preguntas frecuentes",
     items: [
-      { q: "¿Cuánto cuesta un proyecto?", a: "Cada proyecto es distinto. Tras la llamada de descubrimiento enviamos una propuesta con precio cerrado, sin sorpresas." },
-      // PLACEHOLDER timelines and stack: adjust to the real ones.
-      { q: "¿Cuánto se tarda?", a: "Una web o landing, de 2 a 4 semanas. Un e-commerce o un sistema de reservas, de 6 a 10. Las plataformas SaaS, según alcance." },
-      { q: "¿Con qué tecnologías trabajáis?", a: "TypeScript, React, Next.js y Node en la mayoría de proyectos, y Shopify para e-commerce. Si ya tienes un stack, trabajamos sobre él." },
-      { q: "¿Qué pasa después del lanzamiento?", a: "El código, los accesos y la documentación son tuyos. Si quieres, seguimos con un plan mensual de soporte y evolución." },
-      { q: "¿Trabajáis con clientes fuera de España?", a: "Sí. Trabajamos en remoto, en español e inglés, con clientes de Europa y América." },
+      {
+        q: "¿Cuánto cuesta un proyecto?",
+        a: "Depende del proyecto. Después de la llamada te mandamos un precio cerrado.",
+      },
+      // PLACEHOLDER timelines: adjust to the real ones.
+      {
+        q: "¿Cuánto se tarda?",
+        a: "Una web, entre 2 y 4 semanas. Una tienda o un sistema de reservas, entre 6 y 10. Una plataforma, según lo que incluya.",
+      },
+      {
+        q: "¿Con qué tecnologías trabajáis?",
+        a: "TypeScript, React, Next.js y Node. Shopify cuando la tienda lo pide. Si ya tienes un stack, trabajamos sobre ese.",
+      },
+      {
+        q: "¿Qué pasa después del lanzamiento?",
+        a: "El código, los accesos y la documentación quedan en tu cuenta. Hay un plan mensual si quieres que sigamos.",
+      },
+      {
+        q: "¿Trabajáis con clientes fuera de España?",
+        a: "Sí. Trabajamos en remoto, en español y en inglés.",
+      },
     ],
   },
   cta: {
-    title: "Construyamos lo que viene.",
-    body: "Una llamada de 30 minutos con las personas que construirían tu proyecto. Sin compromiso.",
+    title: "Cuéntanos el proyecto.",
+    body: "30 minutos con quien lo construiría. Si no encaja, te lo decimos en esa llamada.",
   },
   footer: { rights: "Todos los derechos reservados.", nav: "Navegación", contact: "Contacto", top: "Volver arriba" },
 };
@@ -82,68 +119,107 @@ export type Content = typeof es;
 const en: Content = {
   meta: {
     title: "Solara Nor | Custom software design and engineering",
-    description:
-      "A software design and engineering studio. We build SaaS platforms, e-commerce, booking systems and high-performance websites.",
+    description: "A design and engineering studio. We build platforms, stores, booking systems and websites.",
   },
   nav: { services: "Services", work: "Work", process: "Process", faq: "FAQ", cta: "Book a call" },
   hero: {
     title: "We design and build software that",
     highlight: "lasts.",
-    body: "Solara Nor is a design and engineering studio. SaaS platforms, e-commerce and booking systems, built by one senior team from first sketch to production.",
-    secondary: "See our work",
+    body: "A small studio. The same team designs and builds your product, from the first call to production.",
+    secondary: "See the work",
   },
   about: {
     label: "The studio",
-    lead: "Nor means “new” in Armenian. It's what we do every day: new products, built to engineering standards.",
-    body: "Design, engineering and product sit in one team, so every decision weighs the *user*, the *code* and the *business*.",
+    lead: "Nor means “new” in Armenian. Each project is custom, and we engineer it that way.",
+    body: "The same team handles design and code. A new screen has to work for the person who *uses* it and the person who *pays*.",
   },
   services: {
     title: "What we build.",
     items: [
-      { name: "SaaS platforms", body: "The full product: accounts, billing, dashboards and APIs. From MVP to the version that scales to thousands of users." },
-      { name: "E-commerce", body: "Shopify or custom stores, fast, wired into your inventory and ready to sell at scale." },
-      { name: "Booking systems", body: "Scheduling, payments and reminders for clinics, hotels and restaurants, connected to the tools they already use." },
-      { name: "Websites and landing pages", body: "Brand sites and campaign pages with instant load times, technical SEO and a simple CMS." },
-      { name: "Integrations", body: "We connect CRMs, ERPs, payment gateways and third-party APIs so data moves without manual work." },
+      {
+        name: "SaaS platforms",
+        body: "Accounts, billing, a dashboard and an API. We start with the MVP and keep going once users arrive.",
+      },
+      { name: "E-commerce", body: "Shopify or a custom store, connected to your inventory." },
+      {
+        name: "Booking systems",
+        body: "Scheduling, payment and reminders for clinics, hotels and restaurants, tied to the tools they already use.",
+      },
+      {
+        name: "Websites and landing pages",
+        body: "Brand sites and campaign pages. Your team edits them from a simple CMS.",
+      },
+      {
+        name: "Integrations",
+        body: "We connect CRMs, ERPs, payment gateways and APIs, so nobody copies data between them by hand.",
+      },
     ],
   },
   work: {
-    eyebrow: "Selected work",
     title: "Recent projects",
+    external: "Opens in a new tab",
     items: [
-      { name: "Casa Almendro", sector: "Boutique hotel", scope: "Website + direct booking engine", image: "almendro" },
-      { name: "Nordvik Atelier", sector: "Designer fashion", scope: "Shopify e-commerce", image: "nordvik" },
-      { name: "Clínica Marès", sector: "Aesthetic medicine", scope: "Online appointments and payments platform", image: "mares" },
+      {
+        name: "Tadrón Teatro",
+        href: "https://www.tadronteatro.com.ar/",
+        body: "A theatre in Palermo, Buenos Aires. This week's bill, the courses, and the history of the room.",
+        image: "/work/tadron.jpg",
+      },
+      {
+        name: "Mar D Jabones",
+        href: "https://www.mardjabones.com.ar/",
+        body: "A catalog of handmade soaps and resins. Orders close on Instagram.",
+        image: "/work/mard.jpg",
+      },
     ],
   },
   process: {
     title: "How we work",
-    body: "One senior team from start to finish. Scope, timeline and price fixed before we begin, and a live build every week.",
+    body: "One senior team, from the first call to launch. Price and dates are fixed before we write code. Every week there is a build to review.",
     steps: [
-      { name: "Discovery", body: "We map the business, the users and the technical constraints. We leave with scope, timeline and a fixed price." },
-      { name: "Product design", body: "Architecture, flows and visual design in a clickable prototype, validated before a single line of code." },
-      { name: "Engineering", body: "Typed, tested, documented code. Weekly reviews on a live build." },
-      { name: "Launch and evolution", body: "We deploy, monitor and measure. Then we keep iterating alongside your team." },
+      {
+        name: "Discovery",
+        body: "We look at the business, who uses it, and what must not break. You leave with scope, dates and a fixed price.",
+      },
+      {
+        name: "Product design",
+        body: "Flows and visuals in a prototype you can click. We sign off before any code.",
+      },
+      { name: "Engineering", body: "TypeScript, with tests. Each week we review the build that is live." },
+      {
+        name: "Launch and evolution",
+        body: "We ship, then watch errors and numbers. If you want, we stay on after launch.",
+      },
     ],
-  },
-  quote: {
-    body: "We finally have a website that matches the hotel. Direct bookings no longer depend on the platforms.",
-    name: "Lucía Ferrer",
-    role: "Director, Casa Almendro",
   },
   faq: {
     title: "Frequently asked questions",
     items: [
-      { q: "How much does a project cost?", a: "Every project is different. After the discovery call we send a proposal with a fixed price, no surprises." },
-      { q: "How long does it take?", a: "A website or landing page, 2 to 4 weeks. An e-commerce or booking system, 6 to 10. SaaS platforms depend on scope." },
-      { q: "What technologies do you use?", a: "TypeScript, React, Next.js and Node on most projects, and Shopify for e-commerce. If you already have a stack, we build on it." },
-      { q: "What happens after launch?", a: "The code, access and documentation are yours. If you want, we stay on with a monthly support and evolution plan." },
-      { q: "Do you work with clients outside Spain?", a: "Yes. We work remotely, in Spanish and English, with clients across Europe and the Americas." },
+      {
+        q: "How much does a project cost?",
+        a: "It depends on the project. After the call we send a fixed price.",
+      },
+      {
+        q: "How long does it take?",
+        a: "A website, 2 to 4 weeks. A store or a booking system, 6 to 10. A platform depends on what it includes.",
+      },
+      {
+        q: "What technologies do you use?",
+        a: "TypeScript, React, Next.js and Node. Shopify when the store calls for it. If you already have a stack, we build on that.",
+      },
+      {
+        q: "What happens after launch?",
+        a: "The code, access and documentation stay in your account. There is a monthly plan if you want us to stay.",
+      },
+      {
+        q: "Do you work with clients outside Spain?",
+        a: "Yes. We work remotely, in Spanish and in English.",
+      },
     ],
   },
   cta: {
-    title: "Let's build what's next.",
-    body: "A 30-minute call with the people who would build your project. No commitment.",
+    title: "Tell us about the project.",
+    body: "30 minutes with the person who would build it. If it is a bad fit, we say so on that call.",
   },
   footer: { rights: "All rights reserved.", nav: "Navigation", contact: "Contact", top: "Back to top" },
 };

@@ -15,14 +15,6 @@ import { BOOKING_URL, EMAIL, content, type Locale } from "./content";
 import { Reveal } from "./Reveal";
 import { ScrollLine } from "./ScrollLine";
 
-// PLACEHOLDER stock photos. Drop real files in /public/images and point these at "/images/<name>.jpg".
-// Photos get the blue duotone (.duo), so real ones will match the brand automatically.
-const IMAGES = {
-  almendro: "https://picsum.photos/id/849/1400/1050",
-  nordvik: "https://picsum.photos/id/379/1400/1050",
-  mares: "https://picsum.photos/id/909/1400/1050",
-};
-
 const SERVICE_ICONS = [AppWindow, ShoppingBag, CalendarCheck, Browser, Plugs];
 
 // Process cards: [dark, bright] steps of the brand blue. The giant numeral is cut out in the page color.
@@ -158,58 +150,46 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </ol>
           </section>
 
-          {/* Work: staggered two-column layout */}
+          {/* Work: two live sites. Column 8 stays empty so the scroll line misses the screenshots. */}
           <section id="work" className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
             <Reveal>
-              <p className="text-xs font-semibold tracking-[0.18em] text-muted uppercase">{t.work.eyebrow}</p>
-              <h2 className={`mt-4 text-5xl leading-[0.98] md:text-7xl ${display}`}>{t.work.title}</h2>
+              <h2 className={`text-5xl leading-[0.98] md:text-7xl ${display}`}>{t.work.title}</h2>
             </Reveal>
-            <div data-line="0.5" className="mt-16 grid gap-16 md:grid-cols-2 md:gap-10">
-              {[0, 1].map((col) => (
-                <div key={col} className={`flex flex-col gap-16 ${col ? "md:pt-48" : ""}`}>
-                  {t.work.items
-                    .filter((_, i) => i % 2 === col)
-                    .map((p) => (
-                      <Reveal key={p.name}>
-                        <article className="group">
-                          <div className="duo parallax aspect-[4/3] rounded-3xl">
-                            <Image
-                              src={IMAGES[p.image as keyof typeof IMAGES]}
-                              alt={`${p.name}, ${p.sector}`}
-                              fill
-                              sizes="(min-width: 768px) 45vw, 100vw"
-                              className="object-cover"
-                            />
-                          </div>
-                          <h3 className={`mt-6 text-3xl ${display}`}>{p.name}</h3>
-                          <ul className="mt-4 flex flex-wrap gap-2 text-sm">
-                            {[p.sector, p.scope].map((tag) => (
-                              <li key={tag} className="rounded-full px-3 py-1 ring-1 ring-line">
-                                {tag}
-                              </li>
-                            ))}
-                          </ul>
-                        </article>
-                      </Reveal>
-                    ))}
-                </div>
+            <div data-line="0.625" className="mt-16 flex flex-col gap-20 md:gap-28">
+              {t.work.items.map((p) => (
+                <Reveal key={p.name}>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group grid grid-cols-1 gap-6 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-blue md:grid-cols-12 md:items-center"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-ink ring-1 ring-line md:col-span-7">
+                      <Image
+                        src={p.image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 768px) 58vw, 100vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-3 md:col-span-4 md:col-start-9">
+                      <h3 className={`text-3xl ${display}`}>{p.name}</h3>
+                      <p className="max-w-[36ch] text-lg leading-relaxed text-muted">{p.body}</p>
+                      <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-text">
+                        {siteHost(p.href)}
+                        <ArrowRight
+                          weight="bold"
+                          className="size-4 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out-soft motion-safe:group-hover:translate-x-1"
+                          aria-hidden
+                        />
+                        <span className="sr-only">{t.work.external}</span>
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
               ))}
             </div>
-          </section>
-
-          {/* Testimonial */}
-          <section data-line="0.5" className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
-            <Reveal>
-              <figure className="grid gap-10 rounded-3xl bg-ink p-8 text-on-dark md:grid-cols-12 md:p-16">
-                <blockquote className={`text-3xl leading-[1.12] md:col-span-9 md:text-5xl ${display}`}>
-                  &ldquo;{t.quote.body}&rdquo;
-                </blockquote>
-                <figcaption className="self-end text-xs font-semibold tracking-[0.14em] uppercase md:col-span-3">
-                  {t.quote.name}
-                  <span className="mt-1 block text-on-dark-muted">{t.quote.role}</span>
-                </figcaption>
-              </figure>
-            </Reveal>
           </section>
 
           {/* FAQ */}
@@ -379,6 +359,10 @@ function Dock({ t }: { t: (typeof content)["es"] }) {
       </div>
     </nav>
   );
+}
+
+function siteHost(href: string) {
+  return new URL(href).host.replace(/^www\./, "");
 }
 
 function BookButton({ label, onBlue = false }: { label: string; onBlue?: boolean }) {

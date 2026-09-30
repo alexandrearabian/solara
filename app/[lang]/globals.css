@@ -11,7 +11,7 @@
   --blue: #1d4eff;
   --blue-text: #1d4eff;
   --blue-deep: #0a1a5c;
-  --ink: #16181d; /* dark blocks: quote, dock, footer */
+  --ink: #16181d; /* dark blocks: dock, footer */
   --on-dark: #eef0f4;
   --on-dark-muted: #a4a9b6;
 }
@@ -77,44 +77,6 @@ h3 {
     -webkit-box-decoration-break: clone;
   }
 
-  /* Blue duotone for photography. Inside a .group, hover reveals the original colors. */
-  .duo {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    background: var(--blue-deep);
-  }
-  .duo img {
-    filter: grayscale(1) contrast(1.1);
-    transition:
-      filter 0.9s var(--ease-out-soft),
-      transform 1.2s var(--ease-out-soft);
-  }
-  .duo::before,
-  .duo::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    transition: opacity 0.9s var(--ease-out-soft);
-  }
-  .duo::before {
-    background: var(--blue);
-    mix-blend-mode: color;
-  }
-  .duo::after {
-    background: var(--blue-deep);
-    mix-blend-mode: lighten;
-  }
-  .group:hover .duo img {
-    filter: none;
-    transform: scale(1.04);
-  }
-  .group:hover .duo::before,
-  .group:hover .duo::after {
-    opacity: 0;
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -197,23 +159,6 @@ h3 {
     @keyframes step-rise {
       from {
         transform: scaleY(0.15);
-      }
-    }
-
-    /* Work photos drift slightly inside their frame */
-    .parallax img {
-      animation: drift linear both;
-      animation-timeline: view();
-      animation-range: cover;
-    }
-    @keyframes drift {
-      from {
-        translate: 0 -5%;
-        scale: 1.12;
-      }
-      to {
-        translate: 0 5%;
-        scale: 1.12;
       }
     }
 
