@@ -69,7 +69,7 @@ h3 {
 @layer components {
   /* Marker highlight (Indisea-style): blue box behind words, survives line wraps. */
   .mark {
-    background: var(--blue);
+    background: linear-gradient(var(--blue), var(--blue)) no-repeat;
     color: #fff;
     padding: 0 0.12em;
     border-radius: 0.12em;
@@ -79,7 +79,7 @@ h3 {
 
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
   /* Scroll reveal: .reveal gets [data-shown] from <Reveal>. */
   .reveal {
     opacity: 0;
@@ -95,6 +95,35 @@ h3 {
     opacity: 1;
     transform: none;
     filter: none;
+  }
+
+  /* Highlights are the argument: they sweep in left to right once their block has settled, in reading order. */
+  .reveal .mark {
+    background-size: 0% 100%;
+    color: inherit;
+    transition:
+      background-size 0.8s var(--ease-out-soft),
+      color 0.3s ease;
+    transition-delay: calc(var(--i, 0) * 80ms + 0.5s);
+  }
+  .reveal .mark + .mark {
+    transition-delay: calc(var(--i, 0) * 80ms + 0.85s);
+  }
+  .reveal[data-shown] .mark {
+    background-size: 100% 100%;
+    color: #fff;
+  }
+  .rise .mark {
+    animation: mark-draw 0.8s var(--ease-out-soft) 0.6s both;
+  }
+  @keyframes mark-draw {
+    from {
+      background-size: 0% 100%;
+      color: var(--fg);
+    }
+    40% {
+      color: var(--fg);
+    }
   }
 
   /* Hero load-in */
@@ -174,6 +203,43 @@ h3 {
         transform: translateY(35%);
       }
     }
+  }
+}
+
+/* Dock: hidden while the hero CTA is on screen (<DockNav> sets [data-shown]). Without JS it simply stays. */
+@media (scripting: enabled) {
+  .dock {
+    transition: opacity 0.4s ease;
+  }
+  .dock:not([data-shown]) {
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .dock {
+      transition:
+        opacity 0.4s ease,
+        transform 0.7s var(--ease-out-soft);
+    }
+    .dock:not([data-shown]) {
+      transform: translateY(calc(100% + 1rem));
+    }
+  }
+}
+
+/* FAQ: answers unfold instead of snapping (where ::details-content exists; elsewhere they open instantly). */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+  details::details-content {
+    height: 0;
+    overflow: clip;
+    transition:
+      height 0.5s var(--ease-out-soft),
+      content-visibility 0.5s allow-discrete;
+  }
+  details[open]::details-content {
+    height: auto;
   }
 }
 

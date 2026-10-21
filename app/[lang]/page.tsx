@@ -12,6 +12,7 @@ import {
   ShoppingBag,
 } from "@phosphor-icons/react/dist/ssr";
 import { BOOKING_URL, EMAIL, content, type Locale } from "./content";
+import { DockNav } from "./DockNav";
 import { Reveal } from "./Reveal";
 import { ScrollLine } from "./ScrollLine";
 
@@ -59,13 +60,16 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             <p className="rise mt-8 max-w-[44ch] text-lg leading-relaxed text-muted md:text-xl" style={{ "--i": 1 } as React.CSSProperties}>
               {t.hero.body}
             </p>
-            <div className="rise mt-10 flex flex-wrap items-center gap-6" style={{ "--i": 2 } as React.CSSProperties}>
+            <div id="hero-cta" className="rise mt-10 flex flex-wrap items-center gap-6" style={{ "--i": 2 } as React.CSSProperties}>
               <BookButton label={t.nav.cta} />
               <a href="#work" className="group inline-flex items-center gap-2 font-medium">
                 {t.hero.secondary}
                 <ArrowDown weight="bold" className="size-4 text-blue-text transition-transform duration-500 ease-out-soft group-hover:translate-y-0.5" />
               </a>
             </div>
+            <p className="rise mt-6 text-sm text-muted" style={{ "--i": 3 } as React.CSSProperties}>
+              {t.hero.note}
+            </p>
           </div>
           <div className="lg:col-span-4">
             <Sunrise />
@@ -119,6 +123,48 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </div>
           </section>
 
+          {/* Work: two live sites. Column 8 stays empty so the scroll line misses the screenshots. */}
+          <section id="work" className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
+            <Reveal>
+              <h2 className={`text-5xl leading-[0.98] md:text-7xl ${display}`}>{t.work.title}</h2>
+            </Reveal>
+            <div data-line="0.625" className="mt-16 flex flex-col gap-20 md:gap-28">
+              {t.work.items.map((p) => (
+                <Reveal key={p.name}>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group grid grid-cols-1 gap-6 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-blue md:grid-cols-12 md:items-center"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-ink ring-1 ring-line md:col-span-7">
+                      <Image
+                        src={p.image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 768px) 58vw, 100vw"
+                        className="object-cover object-top motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out-soft motion-safe:group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-3 md:col-span-4 md:col-start-9">
+                      <h3 className={`text-3xl ${display}`}>{p.name}</h3>
+                      <p className="max-w-[36ch] text-lg leading-relaxed text-muted">{p.body}</p>
+                      <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-text">
+                        {siteHost(p.href)}
+                        <ArrowRight
+                          weight="bold"
+                          className="size-4 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out-soft motion-safe:group-hover:translate-x-1"
+                          aria-hidden
+                        />
+                        <span className="sr-only">{t.work.external}</span>
+                      </span>
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+
           {/* Process: sticky stacked cards with cut-out numerals */}
           <section id="process" data-line="0.85" className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
             <Reveal>
@@ -148,48 +194,6 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 );
               })}
             </ol>
-          </section>
-
-          {/* Work: two live sites. Column 8 stays empty so the scroll line misses the screenshots. */}
-          <section id="work" className="mx-auto max-w-[1400px] px-4 py-24 md:px-8 md:py-32">
-            <Reveal>
-              <h2 className={`text-5xl leading-[0.98] md:text-7xl ${display}`}>{t.work.title}</h2>
-            </Reveal>
-            <div data-line="0.625" className="mt-16 flex flex-col gap-20 md:gap-28">
-              {t.work.items.map((p) => (
-                <Reveal key={p.name}>
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group grid grid-cols-1 gap-6 rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-blue md:grid-cols-12 md:items-center"
-                  >
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-ink ring-1 ring-line md:col-span-7">
-                      <Image
-                        src={p.image}
-                        alt=""
-                        fill
-                        sizes="(min-width: 768px) 58vw, 100vw"
-                        className="object-cover object-top"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-3 md:col-span-4 md:col-start-9">
-                      <h3 className={`text-3xl ${display}`}>{p.name}</h3>
-                      <p className="max-w-[36ch] text-lg leading-relaxed text-muted">{p.body}</p>
-                      <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-text">
-                        {siteHost(p.href)}
-                        <ArrowRight
-                          weight="bold"
-                          className="size-4 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out-soft motion-safe:group-hover:translate-x-1"
-                          aria-hidden
-                        />
-                        <span className="sr-only">{t.work.external}</span>
-                      </span>
-                    </div>
-                  </a>
-                </Reveal>
-              ))}
-            </div>
           </section>
 
           {/* FAQ */}
@@ -264,13 +268,17 @@ function Sunrise() {
   );
 }
 
-function Footer({ t }: { t: (typeof content)["es"] }) {
-  const links = [
+function navLinks(t: (typeof content)["es"]) {
+  return [
     ["#services", t.nav.services],
-    ["#process", t.nav.process],
     ["#work", t.nav.work],
+    ["#process", t.nav.process],
     ["#faq", t.nav.faq],
   ];
+}
+
+function Footer({ t }: { t: (typeof content)["es"] }) {
+  const links = navLinks(t);
   return (
     <footer className="bg-ink pt-20 pb-32 text-on-dark">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
@@ -325,16 +333,11 @@ function Footer({ t }: { t: (typeof content)["es"] }) {
   );
 }
 
-// Floating bottom dock (Zeynapp-style) in place of a top nav bar.
+// Floating bottom dock (Zeynapp-style) in place of a top nav bar. Shows once the hero CTA scrolls away.
 function Dock({ t }: { t: (typeof content)["es"] }) {
-  const links = [
-    ["#services", t.nav.services],
-    ["#process", t.nav.process],
-    ["#work", t.nav.work],
-    ["#faq", t.nav.faq],
-  ];
+  const links = navLinks(t);
   return (
-    <nav className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4">
+    <DockNav>
       <div className="flex h-14 w-full max-w-md items-center gap-6 rounded-full bg-ink pr-1.5 pl-5 text-on-dark shadow-[0_16px_40px_-16px_rgb(10_26_92/0.6)] ring-1 ring-white/10 md:w-auto md:max-w-none">
         <a href="#top" aria-label="Solara Nor">
           <Logo onDark />
@@ -342,7 +345,10 @@ function Dock({ t }: { t: (typeof content)["es"] }) {
         <ul className="hidden items-center gap-6 text-sm text-on-dark-muted md:flex">
           {links.map(([href, label]) => (
             <li key={href}>
-              <a href={href} className="transition-colors hover:text-white">
+              <a
+                href={href}
+                className="relative transition-colors duration-300 after:absolute after:-bottom-2 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-blue after:opacity-0 after:transition-opacity after:duration-300 hover:text-white aria-[current]:text-white aria-[current]:after:opacity-100"
+              >
                 {label}
               </a>
             </li>
@@ -357,7 +363,7 @@ function Dock({ t }: { t: (typeof content)["es"] }) {
           {t.nav.cta}
         </a>
       </div>
-    </nav>
+    </DockNav>
   );
 }
 

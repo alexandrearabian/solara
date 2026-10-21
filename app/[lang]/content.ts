@@ -15,6 +15,8 @@ const es = {
     highlight: "dura.",
     body: "Un estudio pequeño. El mismo equipo diseña y programa tu producto, de la primera llamada a producción.",
     secondary: "Ver trabajo",
+    // Risk reversal under the CTA. Only claims made elsewhere on the page; add "gratis" if the call is free.
+    note: "30 minutos · Precio cerrado antes de programar · En español o inglés",
   },
   about: {
     label: "El estudio",
@@ -127,6 +129,7 @@ const en: Content = {
     highlight: "lasts.",
     body: "A small studio. The same team designs and builds your product, from the first call to production.",
     secondary: "See the work",
+    note: "30 minutes · Fixed price before any code · Spanish or English",
   },
   about: {
     label: "The studio",
